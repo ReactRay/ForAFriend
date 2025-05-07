@@ -1,4 +1,6 @@
 import job1 from '../assets/job1.jpg'
+import job2 from '../assets/job2.jpg'
+import job3 from '../assets/job3.jpg'
 
 function Login() {
     return (
@@ -14,11 +16,12 @@ function Login() {
                 </div>
                 <div className='form-group'>
                     <button>submit</button>
+                    <p>no account? <span>sign up here</span></p>
                 </div>
                 <section className='image-container'>
                     <img src={job1} alt="alt" />
-                    <img src={job1} alt="alt" />
-                    <img src={job1} alt="alt" />
+                    <img src={job2} alt="alt" />
+                    <img src={job3} alt="alt" />
                 </section>
             </form>
 
