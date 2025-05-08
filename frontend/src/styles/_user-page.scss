@@ -3,16 +3,12 @@
 .user-page {
   background-color: $color-secondary;
   min-height: 100vh;
-  padding: 2rem;
   display: flex;
-  gap: 2rem;
-  flex-direction: column;
 
   .user-container {
     background-color: $color-white;
     padding: 2rem;
-    text-align: center;
-
+    border-right: 1px solid #d1cdcd;
     h1 {
       color: $color-primary;
       font-size: clamp(1.5rem, 2vw, 2.5rem);

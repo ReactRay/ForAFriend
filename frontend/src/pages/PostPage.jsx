@@ -26,7 +26,7 @@ function PostPage() {
                     <p className="contact">Contact: {currentPage.contact}</p>
 
                     <div className="user-info">
-                        <img className="avatar" src={currentPage.user.profilePic} alt={currentPage.user.fullName} />
+                        <img className="avatar" src={currentPage.user?.profilePic} alt={currentPage.user.fullName} />
                         <span className="username">{currentPage.user.fullName}</span>
                         <p className="username">{currentPage.user.email} </p>
                     </div>
