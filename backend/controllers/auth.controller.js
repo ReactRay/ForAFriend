@@ -162,7 +162,7 @@ export const checkAuth = (req, res) => {
 }
 
 export async function getUser(req, res) {
-  const { id } = req.body
+  const { id } = req.query
 
   try {
     const user = await User.findOne({ _id: id })

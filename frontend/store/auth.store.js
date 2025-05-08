@@ -9,7 +9,8 @@ export const useAuthStore = create((set) => ({
   isLoading: false,
 
   findUser: async (id) => {
-    const res = await axios.get(BASE_URL + '/auth/user', id, {
+    const res = await axios.get(BASE_URL + '/auth/user', {
+      params: { id },
       withCredentials: true,
     })
 

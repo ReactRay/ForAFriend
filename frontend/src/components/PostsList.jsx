@@ -3,15 +3,13 @@ import { usePostStore } from "../../store/post.store"
 import PostCard from "./PostCard"
 
 
-function PostsList() {
+function PostsList({ posts }) {
 
-    const { posts } = usePostStore()
-    console.log(posts)
     return (
 
 
         <div className="post-list">
-            {posts.map((post, index) => {
+            {posts?.map((post, index) => {
 
                 return (
                     <PostCard post={post} key={post._id} />

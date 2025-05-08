@@ -27,7 +27,6 @@ function PostManagment() {
 
     };
 
-    console.log(formData)
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -42,7 +41,6 @@ function PostManagment() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Submitted Post:", formData);
         const postToUpload = { ...formData, user: user._id }
 
         createPost(postToUpload)

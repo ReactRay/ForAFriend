@@ -7,7 +7,7 @@ import { useEffect } from "react"
 function Home() {
 
     const { user, logout } = useAuthStore()
-    const { getPosts } = usePostStore()
+    const { getPosts, posts } = usePostStore()
 
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function Home() {
             <section className="profile-container">
                 <UserProfile />
                 <PostManagment />
-                <PostsList />
+                <PostsList posts={posts} />
             </section>
 
 

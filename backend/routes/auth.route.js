@@ -5,6 +5,7 @@ import {
   logout,
   updateProfile,
   checkAuth,
+  getUser,
 } from '../controllers/auth.controller.js'
 
 const router = express.Router()
