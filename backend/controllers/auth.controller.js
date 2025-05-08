@@ -160,3 +160,20 @@ export const checkAuth = (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' })
   }
 }
+
+export async function getUser(req, res) {
+  const { id } = req.body
+
+  try {
+    const user = await User.findOne({ _id: id })
+
+    if (user) {
+      res.status(200).json(user)
+    } else {
+      res.status(404).json({ message: 'User not found' })
+    }
+  } catch (error) {
+    console.error('Error in find user:', error.message)
+    res.status(500).json({ message: 'Internal Server Error' })
+  }
+}

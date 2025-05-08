@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import { useEffect } from "react";
 import { useAuthStore } from "../store/auth.store";
 import PostPage from "./pages/PostPage";
+import UserPage from "./pages/UserPage";
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
         </Route>
         <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="/post/:id" element={user ? <PostPage /> : <Navigate to="/login" />} />
-        <Route path="/user/:id" element={user ? <UserPage /> : <Navigate to="/login" />} />
+        <Route path="/user/:id" element={<UserPage />} />
       </Routes>
       <Toaster />
 

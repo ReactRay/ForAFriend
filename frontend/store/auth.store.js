@@ -7,6 +7,15 @@ const BASE_URL = 'http://localhost:5001'
 export const useAuthStore = create((set) => ({
   user: null, // { _id, fullName, email, profilePic }
   isLoading: false,
+
+  findUser: async (id) => {
+    const res = await axios.get(BASE_URL + '/auth/user', id, {
+      withCredentials: true,
+    })
+
+    return res.data
+  },
+
   login: async (userData) => {
     console.log(userData)
     const res = await axios.post(BASE_URL + '/auth/login', userData, {

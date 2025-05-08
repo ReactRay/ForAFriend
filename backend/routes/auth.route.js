@@ -13,4 +13,5 @@ router.post('/login', login)
 router.post('/logout', logout)
 router.put('/update-profile', updateProfile)
 router.get('/check', checkAuth)
+router.get('/user', getUser)
 export default router
