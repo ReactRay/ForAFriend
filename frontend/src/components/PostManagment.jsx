@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { usePostStore } from "../../store/post.store";
-import { useAuthStore } from "../../store/auth.store";
+import { usePostStore } from "../store/post.store"
+import { useAuthStore } from '../store/auth.store';
 
 function PostManagment() {
 

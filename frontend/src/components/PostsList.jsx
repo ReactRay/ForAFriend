@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { usePostStore } from "../../store/post.store"
+import { usePostStore } from "../store/post.store"
 import PostCard from "./PostCard"
 
 

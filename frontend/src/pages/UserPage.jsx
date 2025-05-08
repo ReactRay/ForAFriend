@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
-import { useAuthStore } from "../../store/auth.store"
+import { useAuthStore } from "../store/auth.store"
 import { useEffect, useState } from "react"
-import { usePostStore } from "../../store/post.store"
+import { usePostStore } from "../store/post.store"
 import PostsList from "../components/PostsList"
 
 function UserPage() {

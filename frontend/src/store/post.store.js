@@ -14,7 +14,9 @@ export const usePostStore = create((set) => ({
     toast.success('posts fetched')
   },
   getOnePost: async (id) => {
-    const res = await axios.get(BASE_URL + '/post', id)
+    const res = await axios.get(BASE_URL + '/post/post', {
+      params: { id },
+    })
     console.log(res.data)
     return res.data
   },

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import job1 from '../assets/job1.jpg';
 import job2 from '../assets/job2.jpg';
 import job3 from '../assets/job3.jpg';
-import { useAuthStore } from "../../store/auth.store";
+import { useAuthStore } from '../store/auth.store';
 import toast from "react-hot-toast";
 
 function Signup() {

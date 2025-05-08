@@ -1,16 +1,32 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { usePostStore } from "../../store/post.store";
+import { usePostStore } from "../store/post.store";
+import { useEffect, useState } from "react";
+import Comment from "../components/Comment";
+import { useAuthStore } from "../store/auth.store";
 
 function PostPage() {
+    const [currentPage, setCurrentPage] = useState({})
     const { id } = useParams();
-    const { posts } = usePostStore();
+    const { getOnePost } = usePostStore();
     const navigate = useNavigate();
 
-    const currentPage = posts.find((item) => item._id === id);
+    async function getPost() {
+        const post = await getOnePost(id);
+        setCurrentPage(post);
+    }
 
-    if (!currentPage) return <p>Post not found</p>;
+    useEffect(() => {
+        getPost();
+    }, []);
+
+    useEffect(() => {
+        console.log(currentPage);
+    }, [currentPage]);
+
+    if (!currentPage) return <h1>...loading</h1>
 
     return (
+
         <div className="post-page">
             <button className="back-btn" onClick={() => navigate("/home")}>
                 ← Back to Home
@@ -26,24 +42,15 @@ function PostPage() {
                     <p className="contact">Contact: {currentPage.contact}</p>
 
                     <div className="user-info">
-                        <img className="avatar" src={currentPage.user?.profilePic} alt={currentPage.user.fullName} />
-                        <span className="username">{currentPage.user.fullName}</span>
-                        <p className="username">{currentPage.user.email} </p>
+                        <img className="avatar" src={currentPage.user?.profilePic} alt={currentPage.user?.fullName} />
+                        <span className="username">{currentPage.user?.fullName}</span>
+                        <p className="username">{currentPage.user?.email} </p>
                     </div>
                 </div>
             </div>
 
-            <section className="comments-section">
-                <h2>Comments</h2>
-                <form className="comment-form">
-                    <input type="text" placeholder="Write a comment..." />
-                    <button type="submit">Post</button>
-                </form>
-                <div className="comments-list">
-                    {/* Map comments here later */}
-                    <p>No comments yet.</p>
-                </div>
-            </section>
+            <Comment post={currentPage} />
+
         </div>
     );
 }

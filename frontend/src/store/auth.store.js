@@ -18,12 +18,10 @@ export const useAuthStore = create((set) => ({
   },
 
   login: async (userData) => {
-    console.log(userData)
     const res = await axios.post(BASE_URL + '/auth/login', userData, {
       withCredentials: true,
     })
     set({ user: res.data })
-    console.log(res.data)
   },
 
   signUp: async (userData) => {

@@ -2,12 +2,12 @@ import Comment from '../models/comment.model.js'
 
 export async function addComment(req, res) {
   try {
-    const { body, userId, postId } = req.body
+    const { body, user, post } = req.body
 
     const newComment = await Comment.create({
       body,
-      user: userId,
-      post: postId,
+      user,
+      post,
     })
 
     res.status(201).json(newComment)

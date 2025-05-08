@@ -3,10 +3,10 @@ import Post from '../models/post.model.js'
 import cloudinary from '../lib/cloudinary.js'
 
 export async function getOnePost(req, res) {
-  const { id } = req.body
+  const { id } = req.query
 
   try {
-    const post = await Post.findById(id).populate('comments')
+    const post = await Post.findById(id).populate('comments').populate('user')
 
     if (post) {
       return res.status(200).json(post)
@@ -24,14 +24,15 @@ export async function getOnePost(req, res) {
 export async function getPosts(req, res) {
   try {
     const posts = await Post.find().populate('user')
-    console.log(posts)
 
     if (posts) {
-      res.status(200).json(posts)
+      return res.status(200).json(posts)
     }
-    res.status(500).json({ message: 'Server error', error: err.message })
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error: err.message })
+
+    return res.status(404).json({ message: 'No posts found' })
+  } catch (err) {
+    console.error('Error in getPosts:', err.message)
+    return res.status(500).json({ message: 'Server error', error: err.message })
   }
 }
 

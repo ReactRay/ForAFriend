@@ -6,10 +6,9 @@ import Signup from "./components/Signup";
 import { Toaster } from "react-hot-toast"
 import Home from "./pages/Home";
 import { useEffect } from "react";
-import { useAuthStore } from "../store/auth.store";
 import PostPage from "./pages/PostPage";
 import UserPage from "./pages/UserPage";
-
+import { useAuthStore } from './store/auth.store.js'
 function App() {
 
   const { user, checkAuth } = useAuthStore()
