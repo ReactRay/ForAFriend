@@ -12,7 +12,7 @@ function Home() {
 
     useEffect(() => {
         getPosts()
-    }, [])
+    }, [getPosts])
     return (
         <div className="home-container">
 
