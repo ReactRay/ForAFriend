@@ -1,9 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import authRoutes from './routes/auth.route.js'
+
 import { connectDB } from './lib/db.js'
 import dotenv from 'dotenv'
+import authRoutes from './routes/auth.route.js'
+import postRoutes from './routes/post.route.js'
 
 dotenv.config()
 
@@ -19,6 +21,7 @@ app.use(
 app.use(express.json())
 app.use(cookieParser())
 app.use('/auth', authRoutes)
+app.use('/post', postRoutes)
 
 // Start server
 app.listen(PORT, () => {

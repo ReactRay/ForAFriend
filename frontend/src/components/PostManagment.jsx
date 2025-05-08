@@ -1,6 +1,13 @@
 import { useState, useRef } from "react";
+import { usePostStore } from "../../store/post.store";
+import { useAuthStore } from "../../store/auth.store";
 
 function PostManagment() {
+
+    const { user } = useAuthStore()
+    const { createPost } = usePostStore()
+
+
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -33,7 +40,18 @@ function PostManagment() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submitted Post:", formData);
-        // Later: send to backend route with cloudinary logic
+        const postToUpload = { ...formData, user: user._id }
+
+        createPost(postToUpload)
+
+        setFormData({
+            title: "",
+            description: "",
+            price: "",
+            image: "",
+            contact: "",
+        })
+        setOpenModal(false)
     };
 
     return (

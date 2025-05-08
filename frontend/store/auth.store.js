@@ -60,7 +60,6 @@ export const useAuthStore = create((set) => ({
   updateProfile: async (data) => {
     try {
       set({ isLoading: true })
-      console.log(data)
 
       const res = await axios.put(BASE_URL + '/auth/update-profile', data, {
         withCredentials: true,
