@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../store/auth.store";
 import axios from "axios";
 import { usePostStore } from "../store/post.store";
+import { useNavigate } from "react-router-dom";
 
 function Comment({ post, refresh }) {
     const [commentText, setCommentText] = useState("");
@@ -42,13 +43,16 @@ export default Comment;
 
 
 function CommentCard({ comment }) {
+    const navigate = useNavigate()
+
     return (
         <div className="comment-card">
             <div className="comment-header">
-                <img
+                <img onClick={() => navigate('/user/' + comment.user._id)}
                     src={comment.user?.profilePic || "/default-avatar.png"}
                     alt={comment.user?.fullName || "User"}
                     className="comment-avatar"
+                    style={{ cursor: 'pointer' }}
                 />
                 <div className="comment-user-info">
                     <p className="comment-author">{comment.user?.fullName || "Anonymous"}</p>
