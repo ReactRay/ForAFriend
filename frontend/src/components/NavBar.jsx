@@ -1,15 +1,16 @@
 import { useNavigate } from "react-router-dom"
 
-function NavBar() {
+import { useAuthStore } from "../store/auth.store"
 
+function NavBar() {
+    const { user } = useAuthStore()
     const navigate = useNavigate()
     return (
         <nav>
             <h2>Crafty</h2>
             <ul>
-                <li onClick={() => navigate('/home')}>Home</li>
-                <li>About</li>
-                <li>Start</li>
+                {user && <li onClick={() => navigate('/home')}>Home</li>}
+
             </ul>
         </nav>
     )

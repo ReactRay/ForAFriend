@@ -4,9 +4,12 @@
   padding: 2rem;
   color: $color-black;
   margin: 0 auto;
-  background-color: $color-secondary;
   min-height: 100dvh;
-
+  background: linear-gradient(
+    to bottom,
+    rgba(#b9beaf, 0.8),
+    rgba(#f8f8f8, 0.5)
+  );
   .back-btn {
     background: none;
     border: none;
@@ -20,12 +23,26 @@
   }
 
   .post-content {
+    box-shadow: 0 1rem 2rem rgba(#333, 0.9);
     display: flex;
+    align-items: center;
     gap: 2rem;
-    background-color: $color-black;
+    color: $color-white;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(
+        to right bottom,
+        rgba(#241a2e, 1),
+        rgba(#20393e, 0.8)
+      ),
+      url('../../public/img1.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s;
 
+    &:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: 0 2rem 4rem rgba(#333, 0.9);
+    }
     .post-img {
       flex: 1;
       max-width: 400px;
@@ -37,25 +54,23 @@
       padding: 2rem 0;
       h1 {
         margin-top: 0;
-        color: $color-white;
+        font-size: 5rem;
       }
 
       .description {
         margin: 1rem 0;
-        font-size: 1rem;
-        color: $color-white;
+        font-size: 2rem;
       }
 
       .price {
         font-weight: bold;
-        font-size: 1.2rem;
-        color: $color-white;
+        font-size: 1.5rem;
+        color: #4f8e54;
       }
 
       .contact {
         margin-top: 0.5rem;
-        font-size: 0.95rem;
-        color: $color-white;
+        font-size: 1.95rem;
       }
 
       .user-info {
@@ -72,8 +87,7 @@
         }
 
         .username {
-          font-weight: bold;
-          color: $color-white;
+          font-size: 1.5rem;
         }
       }
     }
@@ -113,11 +127,6 @@
           opacity: 0.9;
         }
       }
-    }
-
-    .comments-list {
-      background-color: #f9f9f9;
-      padding: 1rem;
     }
   }
 }

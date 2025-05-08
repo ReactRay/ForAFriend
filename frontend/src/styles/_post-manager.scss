@@ -1,13 +1,13 @@
 @use './global' as *;
 
 .post-manager {
-  background-color: #dcd3d3;
-  padding: 1rem 0;
+  padding: 1rem 1.5rem;
+  background-color: $color-grey;
 
   ul {
     list-style: none;
     display: flex;
-    gap: 9rem;
+    gap: 1rem;
     width: fit-content;
 
     li {
