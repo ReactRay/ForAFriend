@@ -9,9 +9,15 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT
-app.use(cors())
-app.use(express.json())
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+)
 
+app.use(express.json())
+app.use(cookieParser())
 app.use('/auth', authRoutes)
 
 // Start server

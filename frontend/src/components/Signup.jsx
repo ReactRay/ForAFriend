@@ -3,12 +3,17 @@ import { useNavigate } from "react-router-dom";
 import job1 from '../assets/job1.jpg';
 import job2 from '../assets/job2.jpg';
 import job3 from '../assets/job3.jpg';
+import { useAuthStore } from "../../store/auth.store";
+import toast from "react-hot-toast";
 
 function Signup() {
+
+    const { signUp } = useAuthStore()
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
-        name: '',
+        fullName: '',
         password: '',
     });
 
@@ -20,10 +25,17 @@ function Signup() {
         }));
     };
 
+    async function handleSubmit(e) {
+        e.preventDefault()
+        await signUp(formData)
+        navigate('/home')
+        toast.success('yay')
+    }
+
     return (
         <div className='login-signup'>
             <h1>Signup</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className='form-group'>
                     <input
                         type="text"
@@ -36,9 +48,9 @@ function Signup() {
                 <div className='form-group'>
                     <input
                         type="text"
-                        name="name"
+                        name="fullName"
                         placeholder="name"
-                        value={formData.name}
+                        value={formData.fullName}
                         onChange={handleChange}
                     />
                 </div>
