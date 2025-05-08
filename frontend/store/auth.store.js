@@ -1,13 +1,18 @@
 import { create } from 'zustand'
 
-export const useUserAuthStore = create((set) => ({
-  user: null, // { _id, fullName, email, profilePic }
+const BASE_URL = 'http://localhost:5001'
 
-  login: (userData) => set({ user: userData }),
+export const useAuthStore = create((set) => ({
+  user: null, // { _id, fullName, email, profilePic }
+  isLoading: false,
+
+  login: (userData) => {
+    console.log(userData)
+  },
 
   signUp: (userData) => ({}),
 
   logOut: () => set({ user: null }),
 
-  checkAuth: () => !!useUserAuthStore.getState().user,
+  checkAuth: () => !!useAuthStore.getState().user,
 }))

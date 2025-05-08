@@ -4,7 +4,7 @@ import job1 from '../assets/job1.jpg';
 import job2 from '../assets/job2.jpg';
 import job3 from '../assets/job3.jpg';
 import axios from 'axios'
-
+import { useAuthStore } from '../../store/auth.store';
 
 function Login() {
     const navigate = useNavigate();
@@ -12,6 +12,9 @@ function Login() {
         email: '',
         password: '',
     });
+
+
+    const { login } = useAuthStore()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,10 +26,8 @@ function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        const res = await axios.post('http://localhost:3000/login', formData)
-        const data = res.data
+        login(formData)
 
-        console.log(data)
     }
 
     return (
