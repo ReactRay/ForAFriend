@@ -27,6 +27,7 @@ const postSchema = new mongoose.Schema(
       ref: 'User',
       required: true, // ensures every post is tied to a user
     },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   },
   { timestamps: true }
 )

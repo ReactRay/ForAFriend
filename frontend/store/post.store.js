@@ -13,6 +13,11 @@ export const usePostStore = create((set) => ({
     set({ posts: res.data })
     toast.success('posts fetched')
   },
+  getOnePost: async (id) => {
+    const res = await axios.get(BASE_URL + '/post', id)
+    console.log(res.data)
+    return res.data
+  },
   createPost: async (data) => {
     const res = await axios.post(BASE_URL + '/post/create-post', data)
     toast.success('uploaded a post !')
