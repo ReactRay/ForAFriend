@@ -6,6 +6,8 @@
 
   ul {
     list-style: none;
+    display: flex;
+    gap: 2rem;
 
     li {
       margin-bottom: 1rem;
