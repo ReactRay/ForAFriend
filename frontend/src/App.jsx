@@ -13,6 +13,8 @@ function App() {
 
   const { user, checkAuth } = useAuthStore()
 
+
+
   useEffect(() => {
     checkAuth()
   }, [])
@@ -27,6 +29,7 @@ function App() {
         </Route>
         <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="/post/:id" element={user ? <PostPage /> : <Navigate to="/login" />} />
+        <Route path="/user/:id" element={user ? <UserPage /> : <Navigate to="/login" />} />
       </Routes>
       <Toaster />
 

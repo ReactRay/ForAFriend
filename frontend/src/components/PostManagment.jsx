@@ -12,7 +12,7 @@ function PostManagment() {
         title: "",
         description: "",
         price: "",
-        image: "", // this will store base64
+        image: "",
         contact: "",
     });
 
@@ -23,8 +23,11 @@ function PostManagment() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+
+
     };
 
+    console.log(formData)
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;

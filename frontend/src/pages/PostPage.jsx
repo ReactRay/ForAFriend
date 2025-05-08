@@ -22,7 +22,7 @@ function PostPage() {
                 <div className="post-info">
                     <h1>{currentPage.title}</h1>
                     <p className="description">{currentPage.description}</p>
-                    <p className="price">${currentPage.price}</p>
+                    <p className="price">{currentPage.price} ₪</p>
                     <p className="contact">Contact: {currentPage.contact}</p>
 
                     <div className="user-info">
