@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/auth.store";
 import axios from "axios";
+import { usePostStore } from "../store/post.store";
 
-function Comment({ post }) {
+function Comment({ post, refresh }) {
     const [commentText, setCommentText] = useState("");
     const { user } = useAuthStore()
+    const { addComment } = usePostStore()
 
-    async function addComment() {
-        console.log({ body: commentText, user: user._id, post: post._id, })
-        const comment = await axios.post('http://localhost:5001/comment/add-comment', { body: commentText, user: user._id, post: post._id, })
+    async function addCom() {
+
+        await addComment({ body: commentText, user: user._id, post: post._id, })
+        refresh()
 
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!commentText.trim()) return;
-        addComment()
+        addCom()
         setCommentText("");
     };
 
-    console.log(post.comments)
     return (
         <section className="comments-section">
             <h2>Comments</h2>
@@ -31,11 +33,47 @@ function Comment({ post }) {
                 />
                 <button type="submit">Post</button>
             </form>
-            <div className="comments-list">
-                <p>No comments yet.</p>
-            </div>
+            <CommentList comments={post.comments} />
         </section>
     );
 }
 
 export default Comment;
+
+
+function CommentCard({ comment }) {
+    return (
+        <div className="comment-card">
+            <div className="comment-header">
+                <img
+                    src={comment.user?.profilePic || "/default-avatar.png"}
+                    alt={comment.user?.fullName || "User"}
+                    className="comment-avatar"
+                />
+                <div className="comment-user-info">
+                    <p className="comment-author">{comment.user?.fullName || "Anonymous"}</p>
+                    <p className="comment-email">{comment.user?.email || ""}</p>
+                </div>
+            </div>
+            <p className="comment-body">{comment.body}</p>
+        </div>
+    );
+}
+
+
+
+
+function CommentList({ comments }) {
+    if (!comments?.length) {
+        return <p className="no-comments">No comments yet.</p>;
+    }
+
+    return (
+        <div className="comments-list">
+            {comments.map((comment) => (
+                <CommentCard key={comment._id} comment={comment} />
+            ))}
+        </div>
+    );
+}
+

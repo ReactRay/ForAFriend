@@ -23,9 +23,28 @@ export const usePostStore = create((set) => ({
   createPost: async (data) => {
     const res = await axios.post(BASE_URL + '/post/create-post', data)
     toast.success('uploaded a post !')
-    console.log(res.data, 'lets see!')
     set((state) => ({
       posts: [...state.posts, res.data.newPost],
     }))
+  },
+  addComment: async (data) => {
+    try {
+      const res = await axios.post(BASE_URL + '/comment/add-comment', data)
+      const newComment = res.data
+
+      toast.success('comment added')
+
+      // Update the right post in state
+      set((state) => ({
+        posts: state.posts.map((post) =>
+          post._id === data.post
+            ? { ...post, comments: [...post.comments, newComment] }
+            : post
+        ),
+      }))
+    } catch (error) {
+      console.error('Error adding comment:', error.message)
+      toast.error('Failed to add comment')
+    }
   },
 }))

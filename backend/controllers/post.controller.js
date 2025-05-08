@@ -6,7 +6,12 @@ export async function getOnePost(req, res) {
   const { id } = req.query
 
   try {
-    const post = await Post.findById(id).populate('comments').populate('user')
+    const post = await Post.findById(id)
+      .populate('user') // post owner
+      .populate({
+        path: 'comments',
+        populate: { path: 'user' }, // user of each comment
+      })
 
     if (post) {
       return res.status(200).json(post)
@@ -23,7 +28,7 @@ export async function getOnePost(req, res) {
 
 export async function getPosts(req, res) {
   try {
-    const posts = await Post.find().populate('user')
+    const posts = await Post.find().populate('user').populate('comments')
 
     if (posts) {
       return res.status(200).json(posts)

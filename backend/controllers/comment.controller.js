@@ -1,4 +1,5 @@
 import Comment from '../models/comment.model.js'
+import Post from '../models/post.model.js'
 
 export async function addComment(req, res) {
   try {
@@ -9,6 +10,12 @@ export async function addComment(req, res) {
       user,
       post,
     })
+
+    await Post.findByIdAndUpdate(
+      post,
+      { $push: { comments: newComment._id } },
+      { new: true }
+    )
 
     res.status(201).json(newComment)
   } catch (error) {
