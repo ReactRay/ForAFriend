@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/_post-card.scss'
 
 function PostCard({ post }) {
+    const navigate = useNavigate()
     return (
         <div className="post-card">
-            <img className="post-img" src={post.image} alt={post.title} />
+            <img className="post-img" src={post.image} alt={post.title} onClick={() => navigate('/post/' + post._id)} />
 
             <div className="post-content">
                 <h3 className="post-title">{post.title}</h3>

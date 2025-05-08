@@ -1,7 +1,7 @@
 import { useAuthStore } from "../../store/auth.store"
-import { UserProfile } from "./UserProfile"
-import PostsList from "./PostsList"
-import PostManagment from "./PostManagment"
+import { UserProfile } from "../components/UserProfile"
+import PostsList from "../components/PostsList"
+import PostManagment from "../components/PostManagment"
 import { usePostStore } from "../../store/post.store"
 import { useEffect } from "react"
 function Home() {

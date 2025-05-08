@@ -4,10 +4,10 @@ import NavBar from "./components/NavBar";
 import Layout from "./pages/Layout";
 import Signup from "./components/Signup";
 import { Toaster } from "react-hot-toast"
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import { useEffect } from "react";
 import { useAuthStore } from "../store/auth.store";
-
+import PostPage from "./pages/PostPage";
 
 function App() {
 
@@ -26,6 +26,7 @@ function App() {
           <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/home" />} />
         </Route>
         <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/post/:id" element={user ? <PostPage /> : <Navigate to="/login" />} />
       </Routes>
       <Toaster />
 

@@ -18,6 +18,10 @@ const postSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    contact: {
+      type: String,
+      default: '058-770-6678',
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
