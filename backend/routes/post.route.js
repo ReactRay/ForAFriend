@@ -4,6 +4,7 @@ import {
   getOnePost,
   getPosts,
   deletePost,
+  updatePost,
 } from '../controllers/post.controller.js'
 const router = express.Router()
 
@@ -14,5 +15,7 @@ router.get('/posts', getPosts)
 router.get('/post', getOnePost)
 
 router.delete('/post/:id', deletePost)
+
+router.put('/post/update-post', updatePost)
 
 export default router

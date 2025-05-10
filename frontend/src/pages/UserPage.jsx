@@ -10,7 +10,7 @@ function UserPage() {
     const { findUser, user } = useAuthStore()
     const { posts } = usePostStore()
 
-    const userPosts = posts.filter((item) => item.user._id === id)
+    const userPosts = posts.filter((item) => item.user?._id === id)
 
     async function getUser() {
         const user = await findUser(id)

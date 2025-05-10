@@ -78,3 +78,25 @@ export async function deletePost(req, res) {
     res.status(500).json({ error: 'Failed to delete post' })
   }
 }
+
+export const updatePost = async (req, res) => {
+  try {
+    const { id, ...updates } = req.body
+
+    console.log(req.body, 'reached')
+    const updatedPost = await Post.findByIdAndUpdate(
+      id,
+      updates,
+      { new: true } // returns the updated document
+    )
+
+    if (!updatedPost) {
+      return res.status(404).json({ message: 'Post not found' })
+    }
+
+    res.status(200).json(updatedPost)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Failed to update post', error })
+  }
+}

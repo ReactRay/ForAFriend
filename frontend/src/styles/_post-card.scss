@@ -2,7 +2,7 @@
 
 .post-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   background-color: $color-white;
 }
 
@@ -80,6 +80,64 @@
       .user-name {
         font-size: 0.9rem;
         color: #333;
+      }
+    }
+  }
+}
+
+.edit-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    input,
+    textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid $color-grey;
+      font-size: 1rem;
+      resize: none;
+
+      &:focus {
+        border-color: $color-primary;
+        outline: none;
+        box-shadow: 0 0 5px rgba($color-primary, 0.5);
+      }
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+
+    button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:first-of-type {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &:hover {
+          background-color: darken($color-primary, 10%);
+        }
+      }
+
+      &:last-of-type {
+        background-color: coral;
+        color: $color-white;
+
+        &:hover {
+          background-color: darken(coral, 10%);
+        }
       }
     }
   }

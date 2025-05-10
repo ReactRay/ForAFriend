@@ -52,13 +52,33 @@ export const usePostStore = create((set, get) => ({
     const { posts } = get()
     try {
       const res = await axios.delete(BASE_URL + `/post/post/${id}`)
-      console.log(res.data)
       set({ posts: posts.filter((item) => item._id !== id) })
       toast.success('Post deleted')
     } catch (error) {
       console.log('error in deletion', error)
       toast.error('Failed to delete post')
       throw error
+    }
+  },
+  updatePost: async (updatedData) => {
+    const { posts } = get()
+    const { id } = updatedData
+
+    try {
+      const res = await axios.put(
+        `${BASE_URL}/post/post/update-post`,
+        updatedData
+      )
+      const updatedPost = res.data
+
+      set({
+        posts: posts.map((item) => (item._id === id ? updatedData : item)),
+      })
+
+      toast.success('Post updated successfully!')
+    } catch (err) {
+      console.error(err)
+      toast.error('Failed to update post')
     }
   },
 }))
