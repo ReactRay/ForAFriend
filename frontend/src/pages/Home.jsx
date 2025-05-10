@@ -3,16 +3,10 @@ import { UserProfile } from "../components/UserProfile"
 import PostsList from "../components/PostsList"
 import PostManagment from "../components/PostManagment"
 import { usePostStore } from '../store/post.store'
-import { useEffect } from "react"
 function Home() {
 
-    const { user, logout } = useAuthStore()
-    const { getPosts, posts } = usePostStore()
+    const { posts } = usePostStore()
 
-
-    useEffect(() => {
-        getPosts()
-    }, [getPosts])
     return (
         <div className="home-container">
 

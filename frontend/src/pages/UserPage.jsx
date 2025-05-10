@@ -23,6 +23,8 @@ function UserPage() {
 
     const canDelete = id === user?._id;
 
+    console.log(canDelete, userPosts)
+
     return (
         <div className="user-page">
             <div className="user-container">

@@ -1,8 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles/_post-card.scss'
+import { usePostStore } from '../store/post.store';
 
 function PostCard({ post, canDelete }) {
     const navigate = useNavigate()
+    const { deletePost } = usePostStore()
+
+    async function handleDelete(id) {
+        confirm('are you sure ?')
+        await deletePost(id)
+    }
 
     return (
         <div className="post-card">
@@ -18,7 +25,7 @@ function PostCard({ post, canDelete }) {
                     <span className="user-name">{post.user.fullName}</span>
                 </div>
 
-                {canDelete && <div className='btn-box'> <button className='btn'>delete</button> <button className='btn'>edit</button></div>}
+                {canDelete && <div className='btn-box'> <button onClick={() => handleDelete(post._id)} className='btn'>delete</button> <button className='btn'>edit</button></div>}
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 
 const BASE_URL = 'http://localhost:5001'
 
-export const usePostStore = create((set) => ({
+export const usePostStore = create((set, get) => ({
   posts: [],
 
   getPosts: async () => {
@@ -45,6 +45,20 @@ export const usePostStore = create((set) => ({
     } catch (error) {
       console.error('Error adding comment:', error.message)
       toast.error('Failed to add comment')
+    }
+  },
+
+  deletePost: async (id) => {
+    const { posts } = get()
+    try {
+      const res = await axios.delete(BASE_URL + `/post/post/${id}`)
+      console.log(res.data)
+      set({ posts: posts.filter((item) => item._id !== id) })
+      toast.success('Post deleted')
+    } catch (error) {
+      console.log('error in deletion', error)
+      toast.error('Failed to delete post')
+      throw error
     }
   },
 }))

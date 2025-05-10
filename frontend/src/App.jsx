@@ -9,10 +9,16 @@ import { useEffect } from "react";
 import PostPage from "./pages/PostPage";
 import UserPage from "./pages/UserPage";
 import { useAuthStore } from './store/auth.store.js'
+import { usePostStore } from "./store/post.store.js";
 function App() {
 
   const { user, checkAuth } = useAuthStore()
+  const { getPosts } = usePostStore()
 
+
+  useEffect(() => {
+    getPosts()
+  }, [getPosts])
 
 
   useEffect(() => {
@@ -22,7 +28,7 @@ function App() {
     <main>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={user ? <Home /> : <Layout />}>
           <Route index element={<Login />} /> {/* default child route */}
           <Route path='/login' element={!user ? <Login /> : <Navigate to="/home" />} /> {/* default child route */}
           <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/home" />} />

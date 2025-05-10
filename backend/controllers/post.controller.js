@@ -66,3 +66,15 @@ export async function createPost(req, res) {
     res.status(500).json({ message: 'Server error', error: err.message })
   }
 }
+
+export async function deletePost(req, res) {
+  const postId = req.params.id
+  console.log(postId, req)
+
+  try {
+    await Post.findByIdAndDelete(postId)
+    res.status(200).json('Post deleted successfully')
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete post' })
+  }
+}
