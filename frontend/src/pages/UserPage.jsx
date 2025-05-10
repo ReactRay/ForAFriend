@@ -7,7 +7,7 @@ import PostsList from "../components/PostsList"
 function UserPage() {
     const [currentUser, setCurrentUser] = useState({})
     const { id } = useParams()
-    const { findUser } = useAuthStore()
+    const { findUser, user } = useAuthStore()
     const { posts } = usePostStore()
 
     const userPosts = posts.filter((item) => item.user._id === id)
@@ -20,6 +20,8 @@ function UserPage() {
     useEffect(() => {
         getUser()
     }, [])
+
+    const canDelete = id === user?._id;
 
     return (
         <div className="user-page">
@@ -34,7 +36,7 @@ function UserPage() {
                     <p><span>Last Update:</span> {new Date(currentUser.updatedAt).toLocaleDateString()}</p>
                 </div>
             </div>
-            <PostsList posts={userPosts} />
+            <PostsList posts={userPosts} canDelete={canDelete} />
         </div>
     )
 }

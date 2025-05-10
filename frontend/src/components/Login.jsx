@@ -27,6 +27,7 @@ function Login() {
     async function handleSubmit(e) {
         e.preventDefault()
         login(formData)
+        navigate('/home')
 
     }
 
