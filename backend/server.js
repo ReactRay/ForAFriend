@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import authRoutes from './routes/auth.route.js'
 import postRoutes from './routes/post.route.js'
 import commentRoutes from './routes/comment.route.js'
+import requestRoutes from './routes/request.route.js'
 
 dotenv.config()
 
@@ -24,6 +25,7 @@ app.use(cookieParser())
 app.use('/auth', authRoutes)
 app.use('/post', postRoutes)
 app.use('/comment', commentRoutes)
+app.use('/request', requestRoutes)
 
 // Start server
 app.listen(PORT, () => {
