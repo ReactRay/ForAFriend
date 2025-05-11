@@ -6,4 +6,6 @@ const router = express.Router()
 
 router.post('/new-request', createNewRequest)
 
+router.get('/all', getRequests)
+
 export default router

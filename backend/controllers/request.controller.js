@@ -21,3 +21,21 @@ export async function createNewRequest(req, res) {
     return res.status(500).json({ message: 'Internal server error' })
   }
 }
+
+// Route: GET /request/all?userId=123
+
+export async function getRequests(req, res) {
+  const { userId } = req.query
+
+  if (!userId) {
+    return res.status(400).json({ message: 'Missing sender id' })
+  }
+
+  try {
+    const results = await Request.find({ sender: userId })
+    return res.status(200).json(results)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: 'Internal server error' })
+  }
+}
