@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
 import { usePostStore } from "../store/post.store"
 import { useAuthStore } from '../store/auth.store';
+import { Navigate, useNavigate } from "react-router-dom";
 
 function PostManagment() {
 
     const { user } = useAuthStore()
     const { createPost } = usePostStore()
+    const navigate = useNavigate()
 
 
     const [formData, setFormData] = useState({
@@ -59,7 +61,7 @@ function PostManagment() {
         <section className="post-manager">
             <ul>
                 <li onClick={() => setOpenModal(true)}>create a post</li>
-                <li>my requests</li>
+                <li onClick={() => navigate('/requests')}>my requests</li>
             </ul>
 
             {openModal && <section className="modal">

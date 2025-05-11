@@ -15,15 +15,16 @@ function App() {
   const { user, checkAuth } = useAuthStore()
   const { getPosts } = usePostStore()
 
+  useEffect(() => {
+    checkAuth()
+  }, [])
 
   useEffect(() => {
     getPosts()
   }, [getPosts])
 
 
-  useEffect(() => {
-    checkAuth()
-  }, [])
+
   return (
     <main>
       <NavBar />

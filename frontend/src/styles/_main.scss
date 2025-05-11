@@ -6,7 +6,7 @@
   .first {
     flex: 1;
     padding: 3rem 3rem;
-    background: linear-gradient(rgba(#3b584e, 1), rgba(#071b14, 0.7)),
+    background: linear-gradient(rgba(#022d29, 0.9), rgba(#2b3c5d, 0.9)),
       url('../assets/job3.jpg');
     background-size: cover;
     background-position: center;
@@ -14,20 +14,20 @@
     h1 {
       font-size: 2.8rem;
       text-transform: uppercase;
-      color: $color-white;
-      font-weight: 300;
-      margin-bottom: 4rem;
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 2rem;
     }
     p {
-      line-height: 1.7;
-      font-weight: 200;
+      font-size: 1.2rem;
+      line-height: 1.2;
       color: #fff;
     }
   }
 
   .second {
     flex: 2;
-    background: linear-gradient(rgba(#664093, 1), rgba(#071b14, 0.7)),
+    background: linear-gradient(rgba(#5c4678, 1), rgba(#0d2930, 0.9)),
       url('../assets/job2.jpg');
     background-size: cover;
     background-position: center;
@@ -35,12 +35,14 @@
 
     h1 {
       text-align: center;
-      font-size: 4rem;
+      font-size: 3rem;
       padding: 1rem;
-      font-weight: 200;
       letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      font-weight: 400;
     }
     .login-signup {
+      margin-top: 2rem;
       form {
         position: relative;
         .form-group {
@@ -65,7 +67,7 @@
           }
 
           span {
-            color: #2479c9;
+            color: #3c76ad;
           }
         }
 
