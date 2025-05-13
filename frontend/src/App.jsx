@@ -37,8 +37,8 @@ function App() {
         </Route>
         <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
         <Route path="/post/:id" element={user ? <PostPage /> : <Navigate to="/login" />} />
-        <Route path="/user/:id" element={<UserPage />} />
-        <Route path="/requests" element={<RequestPage />} />
+        <Route path="/user/:id" element={user ? <UserPage /> : <Navigate to='/login' />} />
+        <Route path="/requests" element={user ? <RequestPage /> : <Navigate to='/login' />} />
       </Routes>
       <Toaster />
 

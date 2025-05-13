@@ -1,6 +1,9 @@
 import express from 'express'
 
-import { createNewRequest } from '../controllers/request.controller.js'
+import {
+  createNewRequest,
+  getRequests,
+} from '../controllers/request.controller.js'
 
 const router = express.Router()
 

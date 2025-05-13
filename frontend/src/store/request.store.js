@@ -25,8 +25,10 @@ export const useRequestStore = create((set, get) => ({
       const res = await axios.get(BASE_URL + `/request/all`, {
         params: { userId },
       })
+      console.log(userId, res.data)
       set({ requests: res.data })
       toast.success('Requests loaded')
+      return res.data
     } catch (error) {
       toast.error('Failed to fetch requests')
       console.error(error)

@@ -33,6 +33,9 @@ export async function getRequests(req, res) {
 
   try {
     const results = await Request.find({ sender: userId })
+      .populate('post')
+      .populate('sender')
+      .populate('receiver')
     return res.status(200).json(results)
   } catch (error) {
     console.error(error)
