@@ -34,4 +34,22 @@ export const useRequestStore = create((set, get) => ({
       console.error(error)
     }
   },
+  updateStatus: async (requestId, status) => {
+    try {
+      const res = await axios.put(BASE_URL + '/request/update', {
+        requestId,
+        status,
+      })
+
+      const requestsArr = get().requests.map((item) =>
+        item._id === requestId ? res.data : item
+      )
+
+      set({ requests: requestsArr })
+      toast.success(`Request marked as ${status}`)
+    } catch (error) {
+      toast.error('Failed to update request status')
+      console.error(error)
+    }
+  },
 }))

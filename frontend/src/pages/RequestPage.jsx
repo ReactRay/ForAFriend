@@ -37,7 +37,7 @@ function RequestPage() {
                             <td>{req.post?.description}</td>
                             <td>{req.sender?.fullName}</td>
                             <td>{req.receiver?.fullName}</td>
-                            <td>{req.status}</td>
+                            <td>{req.status === 'waiting for payment' ? <>waiting for payment: <button className="btn">Pay</button></> : req.status}</td>
                             <td>{new Date(req.createdAt).toLocaleString()}</td>
                         </tr>
                     ))}
