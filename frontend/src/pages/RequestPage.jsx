@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useRequestStore } from "../store/request.store";
 import { useAuthStore } from "../store/auth.store";
 
+import { PayPalButtons } from "@paypal/react-paypal-js";
+
 function RequestPage() {
     const [requests, setRequests] = useState([]);
-    const { getRequests } = useRequestStore();
+    const { getRequests, updateStatus } = useRequestStore(); // Make sure this updates backend
     const { user } = useAuthStore();
 
     async function getRequestsResult() {
@@ -15,6 +17,11 @@ function RequestPage() {
     useEffect(() => {
         getRequestsResult();
     }, []);
+
+    async function handlePaymentSuccess(requestId) {
+        await updateStatus(requestId, 'paid'); // or 'finished'
+        getRequestsResult(); // refresh UI
+    }
 
     return (
         <div className="request-page">
@@ -37,7 +44,30 @@ function RequestPage() {
                             <td>{req.post?.description}</td>
                             <td>{req.sender?.fullName}</td>
                             <td>{req.receiver?.fullName}</td>
-                            <td>{req.status === 'waiting for payment' ? <>waiting for payment: <button className="btn">Pay</button></> : req.status}</td>
+                            <td>
+                                {req.status === 'waiting for payment' ? (
+                                    <> waiting for payment:
+                                        <PayPalButtons
+                                            style={{ layout: "horizontal" }}
+                                            createOrder={(data, actions) => {
+                                                return actions.order.create({
+                                                    purchase_units: [{
+                                                        amount: {
+                                                            value: req.post.price || "10.00", // Default or real amount
+                                                        },
+                                                    }],
+                                                });
+                                            }}
+                                            onApprove={(data, actions) => {
+                                                return actions.order.capture().then(() => {
+                                                    handlePaymentSuccess(req._id);
+                                                });
+                                            }}
+                                        /> </>
+                                ) : (
+                                    req.status
+                                )}
+                            </td>
                             <td>{new Date(req.createdAt).toLocaleString()}</td>
                         </tr>
                     ))}
