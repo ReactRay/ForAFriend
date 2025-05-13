@@ -60,8 +60,9 @@ function PostManagment() {
     return (
         <section className="post-manager">
             <ul>
-                <li onClick={() => setOpenModal(true)}>create a post</li>
-                <li onClick={() => navigate('/requests')}>my requests</li>
+                <li onClick={() => setOpenModal(true)}>Create a post</li>
+                <li onClick={() => navigate('/requests')}>My Requests</li>
+                <li onClick={() => navigate('/jobs')}>My Jobs</li>
             </ul>
 
             {openModal && <section className="modal">

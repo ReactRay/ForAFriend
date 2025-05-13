@@ -20,10 +20,10 @@ export const useRequestStore = create((set, get) => ({
     }
   },
 
-  getRequests: async (userId) => {
+  getRequests: async (userId, caller) => {
     try {
       const res = await axios.get(BASE_URL + `/request/all`, {
-        params: { userId },
+        params: { userId, caller },
       })
       console.log(userId, res.data)
       set({ requests: res.data })

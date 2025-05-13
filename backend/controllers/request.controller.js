@@ -25,14 +25,14 @@ export async function createNewRequest(req, res) {
 // Route: GET /request/all?userId=123
 
 export async function getRequests(req, res) {
-  const { userId } = req.query
+  const { userId, caller } = req.query
 
   if (!userId) {
     return res.status(400).json({ message: 'Missing sender id' })
   }
 
   try {
-    const results = await Request.find({ sender: userId })
+    const results = await Request.find({ [caller]: userId })
       .populate('post')
       .populate('sender')
       .populate('receiver')

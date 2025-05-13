@@ -11,6 +11,7 @@ import UserPage from "./pages/UserPage";
 import { useAuthStore } from './store/auth.store.js'
 import { usePostStore } from "./store/post.store.js";
 import RequestPage from "./pages/RequestPage.jsx";
+import JobsPage from './pages/JobsPage.jsx';
 function App() {
 
   const { user, checkAuth } = useAuthStore()
@@ -39,6 +40,7 @@ function App() {
         <Route path="/post/:id" element={user ? <PostPage /> : <Navigate to="/login" />} />
         <Route path="/user/:id" element={user ? <UserPage /> : <Navigate to='/login' />} />
         <Route path="/requests" element={user ? <RequestPage /> : <Navigate to='/login' />} />
+        <Route path="/jobs" element={user ? <JobsPage /> : <Navigate to='/login' />} />
       </Routes>
       <Toaster />
 

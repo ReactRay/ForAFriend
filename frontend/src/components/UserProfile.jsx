@@ -36,7 +36,7 @@ export function UserProfile() {
 
 
     return (
-        <div className="user-profile">
+        <div className="user-profile" >
             <div className="img-container">
                 <img
                     src={selectedImg || user.profilePic || "/avatar.png"}
@@ -61,7 +61,7 @@ export function UserProfile() {
                 <li>{user.email}</li>
             </ul>
 
-            <button onClick={logout}>logout</button>
+            <button onClick={logout} >logout</button>
         </div>
     )
 }
