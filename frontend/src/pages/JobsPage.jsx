@@ -44,15 +44,16 @@ function JobsPage() {
                             <td>{req.receiver?.fullName}</td>
                             <td>
                                 {req.status === "pending" ? (
-                                    <div>
-                                        pending:
+                                    <div className="btn-box">
+                                        <span className={`status-box ${req.status.replace(/\s+/g, "-")}`}>pending</span>
                                         <button onClick={() => acceptRequest(req._id)} className="btn">Accept</button>
                                         <button onClick={() => rejectRequest(req._id)} className="btn">Reject</button>
                                     </div>
                                 ) : (
-                                    req.status
+                                    <span className={`status-box ${req.status.replace(/\s+/g, "-")}`}>{req.status}</span>
                                 )}
                             </td>
+
                             <td>{new Date(req.createdAt).toLocaleString()}</td>
                         </tr>
                     ))}

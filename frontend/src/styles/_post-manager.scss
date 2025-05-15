@@ -11,16 +11,26 @@
     width: fit-content;
 
     li {
+      position: relative;
       margin-bottom: 1rem;
       background-color: $color-primary;
       padding: 0.5rem 1rem;
       color: $color-secondary;
       transition: all 0.5s;
+      align-content: center;
 
       &:hover {
         background-color: $color-secondary;
         color: $color-primary;
       }
+    }
+
+    .search-bar {
+      padding: 0.2rem 1rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
     }
   }
 

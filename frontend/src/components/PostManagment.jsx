@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 function PostManagment() {
 
     const { user } = useAuthStore()
-    const { createPost } = usePostStore()
+    const { createPost, changeFilter } = usePostStore()
     const navigate = useNavigate()
 
 
@@ -63,6 +63,7 @@ function PostManagment() {
                 <li onClick={() => setOpenModal(true)}>Create a post</li>
                 <li onClick={() => navigate('/requests')}>My Requests</li>
                 <li onClick={() => navigate('/jobs')}>My Jobs</li>
+                <li><input type="text" placeholder="search for jobs" className="search-bar" onChange={(e) => changeFilter(e.target.value)} /></li>
             </ul>
 
             {openModal && <section className="modal">

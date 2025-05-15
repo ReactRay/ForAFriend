@@ -6,11 +6,26 @@ const BASE_URL = 'http://localhost:5001'
 
 export const usePostStore = create((set, get) => ({
   posts: [],
+  filter: '',
+
+  changeFilter: (data) => {
+    set({ filter: data })
+  },
 
   getPosts: async () => {
     const res = await axios.get(BASE_URL + '/post/posts')
+    const filter = get().filter
+    const data = res.data
 
-    set({ posts: res.data })
+    let filteredData = data
+
+    if (filter !== '') {
+      filteredData = data.filter((item) =>
+        item.title.toLowerCase().includes(filter.toLowerCase())
+      )
+    }
+
+    set({ posts: filteredData })
   },
   getOnePost: async (id) => {
     const res = await axios.get(BASE_URL + '/post/post', {

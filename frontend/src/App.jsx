@@ -17,7 +17,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 function App() {
 
   const { user, checkAuth } = useAuthStore()
-  const { getPosts } = usePostStore()
+  const { getPosts, filter } = usePostStore()
 
   useEffect(() => {
     checkAuth()
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     getPosts()
-  }, [getPosts])
+  }, [getPosts, filter])
 
 
 

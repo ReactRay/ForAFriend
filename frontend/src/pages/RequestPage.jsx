@@ -46,14 +46,15 @@ function RequestPage() {
                             <td>{req.receiver?.fullName}</td>
                             <td>
                                 {req.status === 'waiting for payment' ? (
-                                    <> waiting for payment:
+                                    <div>
+                                        <span className={`status-box ${req.status.replace(/\s+/g, "-")}`}>waiting for payment</span>
                                         <PayPalButtons
                                             style={{ layout: "horizontal" }}
                                             createOrder={(data, actions) => {
                                                 return actions.order.create({
                                                     purchase_units: [{
                                                         amount: {
-                                                            value: req.post.price || "10.00", // Default or real amount
+                                                            value: req.post.price || "10.00",
                                                         },
                                                     }],
                                                 });
@@ -63,11 +64,13 @@ function RequestPage() {
                                                     handlePaymentSuccess(req._id);
                                                 });
                                             }}
-                                        /> </>
+                                        />
+                                    </div>
                                 ) : (
-                                    req.status
+                                    <span className={`status-box ${req.status.replace(/\s+/g, "-")}`}>{req.status}</span>
                                 )}
                             </td>
+
                             <td>{new Date(req.createdAt).toLocaleString()}</td>
                         </tr>
                     ))}
