@@ -26,7 +26,7 @@ export const useRequestStore = create((set, get) => ({
         params: { userId, caller },
       })
       console.log(userId, res.data)
-      set({ requests: res.data })
+      set({ requests: res.data.reverse() })
       toast.success('Requests loaded')
       return res.data
     } catch (error) {

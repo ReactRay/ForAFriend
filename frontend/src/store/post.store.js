@@ -25,7 +25,7 @@ export const usePostStore = create((set, get) => ({
       )
     }
 
-    set({ posts: filteredData })
+    set({ posts: filteredData.reverse() })
   },
   getOnePost: async (id) => {
     const res = await axios.get(BASE_URL + '/post/post', {

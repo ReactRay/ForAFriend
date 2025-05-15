@@ -35,16 +35,16 @@
   }
 
   .modal {
-    position: absolute;
+    position: fixed;
     max-width: 1200px;
     width: 800px;
-    border: 1px solid #333;
     box-shadow: 0 0 10rem #333;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 3rem;
-    background-color: rgba($color-primary, 0.9);
+    background-color: rgba($color-primary, 0.5);
+    backdrop-filter: blur(25px);
     z-index: 2;
 
     form {
@@ -55,12 +55,11 @@
       button {
         border: none;
         margin-bottom: 1rem;
-        background-color: $color-primary;
+        background-color: rgba($color-primary, 0.9);
         padding: 0.5rem 1rem;
         color: $color-secondary;
         transition: all 0.5s;
         font-weight: 600;
-        border: 1px solid #fff;
 
         &:hover {
           background-color: $color-secondary;
@@ -71,6 +70,13 @@
       input,
       textarea {
         padding: 1rem 1rem;
+        background-color: rgba($color-white, 0.3);
+        border: none;
+
+        &::placeholder {
+          color: #333;
+          font-weight: 700;
+        }
       }
     }
   }

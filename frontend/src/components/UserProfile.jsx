@@ -61,7 +61,6 @@ export function UserProfile() {
                 <li>{user.email}</li>
             </ul>
 
-            <button onClick={logout} >logout</button>
         </div>
     )
 }
