@@ -38,7 +38,7 @@ export const usePostStore = create((set, get) => ({
     const res = await axios.post(BASE_URL + '/post/create-post', data)
     toast.success('uploaded a post !')
     set((state) => ({
-      posts: [...state.posts, res.data.newPost],
+      posts: [res.data.newPost, ...state.posts],
     }))
   },
   addComment: async (data) => {

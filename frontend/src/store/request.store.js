@@ -27,7 +27,6 @@ export const useRequestStore = create((set, get) => ({
       })
       console.log(userId, res.data)
       set({ requests: res.data.reverse() })
-      toast.success('Requests loaded')
       return res.data
     } catch (error) {
       toast.error('Failed to fetch requests')

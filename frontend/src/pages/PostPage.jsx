@@ -30,7 +30,7 @@ function PostPage() {
     useEffect(() => {
         if (user && currentPage && requests.length > 0) {
             const found = requests.some(
-                (req) => req.sender._id === user._id && req.post._id === id
+                (req) => req?.sender?._id === user._id && req?.post?._id === id
             );
             setAlreadyRequested(found);
         }

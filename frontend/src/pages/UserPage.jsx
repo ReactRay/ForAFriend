@@ -19,7 +19,7 @@ function UserPage() {
 
     useEffect(() => {
         getUser()
-    }, [])
+    }, [id])
 
     const canDelete = id === user?._id;
 
