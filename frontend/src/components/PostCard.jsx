@@ -21,7 +21,7 @@ function PostCard({ post, canDelete }) {
             <div className="post-content">
                 <h3 className="post-title">{post.title}</h3>
                 <p className="post-description">{post.description}</p>
-                <p className="post-price">${post.price}</p>
+                <p className="post-price">{post.price}₪</p>
 
                 <div className="post-user" onClick={() => navigate('/user/' + post.user._id)}>
                     <img className="user-avatar" src={post.user.profilePic} alt={post.user.fullName} />
